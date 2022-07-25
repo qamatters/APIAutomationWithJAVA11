@@ -1,12 +1,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Testing Sample API's">
+    <listeners>
+     <listener class-name="apiHelper.Listner.TestListener"></listener>
+    </listeners>
     <test name="Post">
         <parameter name = "env" value= "stage"></parameter>
         <classes>
-            <class name="apiHelper.test.postCreation.createPost"/>
-            <class name="apiHelper.test.getPost.getPostEndPoint"/>
-            <class name="apiHelper.test.updateRequest.updatePost"/>
-            <class name="apiHelper.test.deletePost.deletePostEndPoint"/>
+            <class name="apiHelper.test.post.postCreation.createPost"/>
+<!--            <class name="apiHelper.test.post.getPost.getPostEndPoint"/>-->
+<!--            <class name="apiHelper.test.post.updateRequest.updatePost"/>-->
+<!--            <class name="apiHelper.test.post.deletePost.deletePostEndPoint"/>-->
+<!--               <class name="apiHelper.test.weather.currentWeather"/>-->
         </classes>
     </test>
     <!-- Test -->

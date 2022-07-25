@@ -1,4 +1,4 @@
-package apiHelper.test.updateRequest;
+package apiHelper.test.post.updateRequest;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.HashMap;
 
-import static apiHelper.apiMethods.postRequest.postRequest;
 import static apiHelper.apiMethods.putRequest.putRequest;
 
 public class updatePost {

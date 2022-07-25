@@ -9,7 +9,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.HashMap;
 
-import static apiHelper.constants.apiConstants.GET_POST_INFORMATION;
+import static apiHelper.constants.endPoints.GET_POST_INFORMATION;
 import static apiHelper.util.commonUtil.createURI;
 
 public class deleteRequest {

@@ -5,8 +5,7 @@ import com.jayway.jsonpath.JsonPath;
 import java.io.File;
 import java.io.IOException;
 
-import static apiHelper.constants.apiConstants.BASE_URI;
-import static apiHelper.constants.apiConstants.BASE_URI_STAGE;
+import static apiHelper.constants.apiConstants.*;
 
 public class commonUtil {
 
@@ -17,6 +16,15 @@ public class commonUtil {
             return BASE_URI_STAGE + endPoint;
         }
     }
+
+    public static String createURIForWeatherAPI(String env, String endPoint) {
+        if (env.equals("stage")) {
+            return BASE_URI_WEATHER + endPoint;
+        } else {
+            return BASE_URI_STAGE + endPoint;
+        }
+    }
+
 
     public static String readRequestBody(String requestName) {
         String path = System.getProperty("user.dir") + "/src/test/java/apiHelper/data/" + requestName;

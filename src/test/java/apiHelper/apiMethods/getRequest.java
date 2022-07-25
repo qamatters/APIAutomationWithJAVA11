@@ -1,39 +1,36 @@
 package apiHelper.apiMethods;
-
-import com.jayway.jsonpath.JsonPath;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.HashMap;
 
-import static apiHelper.constants.apiConstants.*;
+
 import static apiHelper.util.commonUtil.createURI;
+import static apiHelper.util.commonUtil.createURIForWeatherAPI;
 
 public class getRequest {
 
-    public static HashMap<String, String> getRequest(String env) throws IOException, InterruptedException {
-        HashMap<String, String> responseValues = new HashMap<>();
+    public static HttpResponse getRequest(String env, String endPoint) throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().GET().header("accept", "application/json")
-                .uri(URI.create(createURI(env, GET_POST_INFORMATION))).build();
+        HttpRequest request = HttpRequest.newBuilder().GET()
+                .header("accept", "application/json")
+                .uri(URI.create(createURI(env, endPoint)))
+                .build();
         HttpResponse httpResponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        if (httpResponse.statusCode() == 200) {
-            String responseValuesAsString = httpResponse.body().toString();
-            String userId = JsonPath.read(responseValuesAsString, "$.userId").toString();
-            String title = JsonPath.read(responseValuesAsString, "$.title").toString();
-            String id = JsonPath.read(responseValuesAsString, "$.id").toString();
-            String body = JsonPath.read(responseValuesAsString, "$.body").toString();
-            responseValues.put("userId", userId);
-            responseValues.put("title", title);
-            responseValues.put("id", id);
-            responseValues.put("body", body);
-        } else {
-            System.out.println("request failed :" + httpResponse);
-        }
-        return responseValues;
+        return httpResponse;
+    }
+
+    public static HttpResponse getRequestWithAPIKey (String env, String endPoint) throws IOException, InterruptedException {
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().GET()
+                .header("accept", "application/json")
+                .header("key", "") //Enter your key here
+                .uri(URI.create(createURIForWeatherAPI(env, endPoint)))
+                .build();
+        HttpResponse httpResponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return httpResponse;
     }
 
 }
+

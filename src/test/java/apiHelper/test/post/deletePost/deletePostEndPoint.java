@@ -1,4 +1,4 @@
-package apiHelper.test.deletePost;
+package apiHelper.test.post.deletePost;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
